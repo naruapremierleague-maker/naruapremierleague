@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: narua-premier-league
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/site-data
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: NPL_INITIAL_OWNER_PASSWORD
+        sync: false
